@@ -1,0 +1,29 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Hello MQTT World</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+	<script src="main.js" defer></script> 
+</head>
+<body>
+	<h1>Accelerometer raw data</h1>
+	<div id="status">No data</div>
+
+	<script>
+		let status = document.getElementById('status');
+		if ( 'Accelerometer' in window ) {
+		  let sensor = new Accelerometer();
+		  sensor.addEventListener('reading', function(e) {
+			status.innerHTML = 'x: ' + e.target.x + '<br> y: ' + e.target.y + '<br> z: ' + e.target.z;
+		  });
+		  sensor.start();
+		}
+		else status.innerHTML = 'Accelerometer not supported';
+	  </script>
+	
+
+</body> 
+</html>
